@@ -1,0 +1,73 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: sans-serif, serif;
+    font-weight: 100;
+}
+h1{
+    margin-bottom: 10px;
+}
+div#wrapper{
+    background-color: #DCDCDC;
+    margin: auto;
+    width: 1024px;
+    padding: 40px;
+}
+div#locations{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.box{
+    background-color: white;
+    display: inline-block;
+    border: 1px solid black;
+    height: 175px;
+    width: 175px;
+    padding: 10px;
+    text-align: center;
+}
+.box h3{
+    padding: 10px 0px 10px 0px;
+}
+.box p{
+    padding: 30px 0px 30px 0px;
+}
+.box form{
+    height: 55px;
+}
+.box input{
+    background-color: orange;
+    width: 100px;
+    height: 30px;
+    border: none;
+    margin-top: 13px;
+}
+div#activities{
+    width: 1004px;
+    height: 200px;
+    padding: 10px;
+    margin-top: 20px;
+}
+div#activities p{
+    display: block;
+    margin-bottom: 10px;
+}
+div#history{
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 10px;
+    border: 1px solid black;
+    font-size: 10pt;
+    height: 170px;
+}
+div#history p{
+    margin-bottom: 5px;
+}
+.red{
+    color: red;
+}
+.green{
+    color: green;
+}
