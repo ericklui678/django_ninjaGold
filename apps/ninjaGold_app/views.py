@@ -13,23 +13,26 @@ def process_money(request):
     now = datetime.datetime.now()
     if 'farm' in request.POST:
         randomNum = random.randrange(10,21)
-        request.session['gold'] += randomNum
-        request.session['log'] = '<p class=green>Earned ' + str(randomNum) +' gold from farm!  ' +str(now.strftime('%Y/%m/%d %H:%M')) + '</p>' + request.session['log']
+        place = 'farm!'
     if 'cave' in request.POST:
         randomNum = random.randrange(5,11)
-        request.session['gold'] += randomNum
-        request.session['log'] = '<p class=green>Earned ' + str(randomNum) +' gold from cave!  ' +str(now.strftime('%Y/%m/%d %H:%M')) + '</p>' + request.session['log']
+        place = 'cave!'
     if 'house' in request.POST:
         randomNum = random.randrange(2,6)
-        request.session['gold'] += randomNum
-        request.session['log'] = '<p class=green>Earned ' + str(randomNum) +' gold from house!  ' +str(now.strftime('%Y/%m/%d %H:%M')) + '</p>' + request.session['log']
+        place = 'house!'
     if 'casino' in request.POST:
         randomNum = random.randrange(-50,51)
-        request.session['gold'] += randomNum
-        if randomNum > 0:
-            request.session['log'] = '<p class=green>Earned ' + str(randomNum) +' gold from casino!  ' +str(now.strftime('%Y/%m/%d %H:%M')) + '</p>' + request.session['log']
-        else:
-            request.session['log'] = '<p class=red>Lost ' + str(abs(randomNum)) +' gold from casino!  ' +str(now.strftime('%Y/%m/%d %H:%M')) + '</p>' + request.session['log']
-        if request.session['gold'] < 0:
-            request.session['gold'] = 0
+        place = 'casino!'
+
+    # update gold counter
+    request.session['gold'] += randomNum
+    # if lost money, show log in red color
+    if randomNum < 0:
+        request.session['log'] = '<p class=red>Lost ' + str(abs(randomNum)) +' gold from casino! ' +str(now.strftime('%Y/%m/%d %H:%M')) + '</p>' + request.session['log']
+    # else if gained money, show log in green color
+    else:
+        request.session['log'] = '<p class=green>Earned ' + str(randomNum) +' gold from ' + place + ' ' + str(now.strftime('%Y/%m/%d %H:%M')) + '</p>' + request.session['log']
+    # if gold count is less than 0, keep at 0
+    if request.session['gold'] < 0:
+        request.session['gold'] = 0
     return redirect('/')
